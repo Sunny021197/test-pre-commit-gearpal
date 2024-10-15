@@ -1,0 +1,58 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetResourcePolicy",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:ListSecretVersionIds"
+            ],
+            "Resource": "arn:aws:secretsmanager:${AWS_REGION}:${AWS_ACCOUNT_ID}:secret:eai/eai-gearpal-gt9H2s"
+        },
+        {
+            "Action": [
+                "elasticache:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:elasticache:${AWS_REGION}:${AWS_ACCOUNT_ID}:serverlesscache:eai-gp"
+        },
+        {
+            "Action": [
+                "dynamodb:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/UserConversationsGearPal",
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/UserFeedbacksGearPal",
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/UserDataGearPal",
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/GPTStoreGearPal"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "secretsmanager:ListSecrets",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "ses:SendEmail",
+                "ses:SendRawEmail"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "aoss:*"
+            ],
+            "Resource": [
+                "arn:aws:aoss:us-west-2:928937340264:collection/ghv9qmabfwcdn84dbaog",
+                "arn:aws:aoss:us-west-2:928937340264:collection/chvo5cp5m8ydgkvso69g",
+                "arn:aws:aoss:us-west-2:928937340264:collection/mt744033yaior6997dj4"
+            ]
+        }
+    ]
+}

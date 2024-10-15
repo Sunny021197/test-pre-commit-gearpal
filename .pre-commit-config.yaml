@@ -1,0 +1,25 @@
+# repos:
+#   - repo: https://github.com/terraform-docs/terraform-docs
+#     rev: "v0.11.2"  # e.g. "v0.11.2"
+#     hooks:
+#       - id: terraform-docs-go
+#         args: ["--output-file", "README.md", "./modules/backend", "./modules/ui", "./subprod/dev/backend", "./subprod/dev/ui", "./subprod/qa/backend"]
+
+repos:
+  - repo: https://github.com/terraform-docs/terraform-docs
+    rev: "v0.16.0"
+    hooks:
+      - id: terraform-docs-go
+        args: ["markdown", "table", "--output-file", "README.md", "./modules/ui"]
+        files: ^(modules|subprod)/.*\.tf$
+
+# repos:
+#   - repo: https://github.com/terraform-docs/terraform-docs
+#     rev: "v0.18.0"  # Replace with the version you need
+#     hooks:
+#       - id: terraform-docs-go
+#         args: ["markdown", "table", "--output-file", "README.md", "--output-mode", "inject", "/."]
+#         files: ^(modules|subprod)/.*\.tf$
+#         types: [terraform]
+
+

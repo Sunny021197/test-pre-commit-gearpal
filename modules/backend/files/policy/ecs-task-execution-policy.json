@@ -1,0 +1,82 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:GetRandomPassword",
+                "secretsmanager:GetResourcePolicy",
+                "secretsmanager:ListSecretVersionIds",
+                "secretsmanager:DescribeSecret"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:secretsmanager:${AWS_REGION}:${AWS_ACCOUNT_ID}:secret:eai/eai-gearpal-gt9H2s"
+        },
+        {
+            "Action": [
+                "elasticache:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:elasticache:${AWS_REGION}:${AWS_ACCOUNT_ID}:serverlesscache:eai-gp"
+        },
+        {
+            "Action": [
+                "dynamodb:*"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/UserConversationsGearPal",
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/UserFeedbacksGearPal",
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/UserDataGearPal",
+                "arn:aws:dynamodb:${AWS_REGION}:${AWS_ACCOUNT_ID}:table/GPTStoreGearPal"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "apigateway:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "aoss:*"
+            ],
+            "Resource": [
+                "arn:aws:aoss:us-west-2:928937340264:collection/ghv9qmabfwcdn84dbaog",
+                "arn:aws:aoss:us-west-2:928937340264:collection/mt744033yaior6997dj4",
+                "arn:aws:aoss:us-west-2:928937340264:collection/chvo5cp5m8ydgkvso69g"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "es:ESHttpGet",
+                "es:ESHttpPost",
+                "es:ESHttpPut",
+                "es:ESHttpDelete",
+                "es:ESHttpHead",
+                "es:ESHttpPatch",
+                "es:DescribeElasticsearchDomain",
+                "es:DescribeElasticsearchDomains",
+                "es:ListDomainNames",
+                "es:ListElasticsearchVersions"
+            ],
+            "Resource": "arn:aws:es:us-west-2:928937340264:domain/eai-gearpal-os-nonprod/*"
+        }
+    ]
+}

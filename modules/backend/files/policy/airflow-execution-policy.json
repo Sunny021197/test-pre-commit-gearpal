@@ -1,0 +1,113 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "airflow:PublishMetrics",
+            "Resource": "arn:aws:airflow:us-west-2:928937340264:environment/eai-gearpal-dev-airflow-test"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListAllMyBuckets",
+            "Resource": [
+                "arn:aws:s3:::gearpal-pdf-content",
+                "arn:aws:s3:::gearpal-pdf-content/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::gearpal-pdf-content",
+                "arn:aws:s3:::gearpal-pdf-content/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+                "logs:GetLogEvents",
+                "logs:GetLogRecord",
+                "logs:GetLogGroupFields",
+                "logs:GetQueryResults"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-west-2:928937340264:log-group:airflow-eai-gearpal-dev-airflow-test-*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:DescribeLogGroups"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "cloudwatch:PutMetricData",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sqs:ChangeMessageVisibility",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:GetQueueUrl",
+                "sqs:ReceiveMessage",
+                "sqs:SendMessage"
+            ],
+            "Resource": "arn:aws:sqs:us-west-2:*:airflow-celery-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:GenerateDataKey*",
+                "kms:Encrypt"
+            ],
+            "NotResource": "arn:aws:kms:*:928937340264:key/*",
+            "Condition": {
+                "StringLike": {
+                    "kms:ViaService": [
+                        "sqs.us-west-2.amazonaws.com"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "batch:SubmitJob",
+                "batch:CancelJob",
+                "batch:DescribeJobs",
+                "batch:TerminateJob",
+                "batch:ListJobs",
+                "batch:RegisterJobDefinition",
+                "batch:DeregisterJobDefinition",
+                "batch:DescribeJobDefinitions",
+                "batch:DescribeJobQueues",
+                "batch:CreateJobQueue",
+                "batch:UpdateJobQueue",
+                "batch:DeleteJobQueue",
+                "batch:DescribeComputeEnvironments",
+                "batch:CreateComputeEnvironment",
+                "batch:UpdateComputeEnvironment",
+                "batch:DeleteComputeEnvironment",
+                "batch:TagResource",
+                "batch:UntagResource"
+            ],
+            "Resource": "arn:aws:airflow:us-west-2:928937340264:environment/eai-gearpal-dev-airflow-test"
+        }
+    ]
+}
